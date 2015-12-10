@@ -16,5 +16,20 @@ def name_type
 
 /* --------------------引用标识符-------------------- */
 def map = [:]
-map."an identifier with a space and double quotes" = "ALLOWED"
-map.'with-dash-signs-and-single-quotes' = "ALLOWED"
+map."an identifier with a space and double quotes" = "ALLOWED" // 可以出现空格
+map.'with-dash-signs-and-single-quotes' = "ALLOWED" // 可以出现横线
+
+assert map."an identifier with a space and double quotes" == "ALLOWED"
+assert map.'with-dash-signs-and-single-quotes' == "ALLOWED"
+
+map.'single quote'
+map."double quote"
+map.'''triple single quote'''
+map."""triple double quote"""
+map./slashy string/
+map.$/dollar slashy string/$
+
+def firstname = "Homer"
+map."Simson-${firstname}" = "Homer Simson"
+
+assert map."Simson-Homer" == "Homer Simson"
