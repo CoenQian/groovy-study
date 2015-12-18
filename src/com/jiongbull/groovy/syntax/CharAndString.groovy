@@ -80,4 +80,27 @@ assert template.toString().contains('Groovy')
 /* --------------------斜线字符串-------------------- */
 // 普通使用
 def fooPattern = /.*foo.*/
-assert  fooPattern == '.*foo.*'
+assert fooPattern == '.*foo.*'
+// 含转义字符使用
+def escapeSlash = /The character \/ is a forward slash/
+assert escapeSlash == 'The character / is a forward slash'
+// 多行支持
+def multilineSlashy = /one
+two
+three/
+assert multilineSlashy.contains('\n')
+// 含占位符使用支持
+def color = 'blue'
+def interpolatedSlashy = /a ${color} car/
+
+assert interpolatedSlashy.toString() == 'a blue car'
+
+/* --------------------字符-------------------- */
+char c1 = 'A'
+assert c1 instanceof Character
+
+def c2 = 'B' as char
+assert c2 instanceof Character
+
+def c3 = (char)'C'
+assert c3 instanceof Character
