@@ -15,13 +15,6 @@ assert (!true) == false
 assert (!'foo') == false
 assert (!'') == true
 
-// 安全占位符
-// TODO 待验证
-//def person = Person.find {it.id == 123}
-//def name = pserson?.name
-//assert name == null
-
-// .@域访问操作符
 class User {
     private final String name
 
@@ -34,6 +27,12 @@ class User {
     }
 }
 
+// 安全占位符
+User persion
+def name = persion?.name
+assert name == null
+
+// .@域访问操作符
 def user = new User('Bob')
 
 assert user.name == 'Name:Bob'
@@ -57,15 +56,13 @@ displayName = user.name ? user.name : 'Amonymous'
 displayName = user.name ?: 'Amonymous'
 
 // *.展开运算符
-// TODO 待验证
-//class Car {
-//    java.util.Map map
-//    Car(java.util.Map map) {
-//        this.map = map
-//    }
-//}
-//users = [
-//        new User(name: 'Jiong'),
-//        null,
-//        new User(name: 'Bull')]
-//assert users*.name == ['Jiong', null, 'bull']
+class Car {
+    String make
+    String model
+}
+
+def cars = [
+        new Car(make: 'Peugeot', model: '508'),
+        null,
+        new Car(make: 'Renault', model: 'Clio')]
+assert cars*.make == ['Peugeot', null, 'Renault']
